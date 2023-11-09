@@ -2,10 +2,10 @@
 DOCKER_IMAGE=$1
 DOCKER_RUN="docker run --rm -i -v $(pwd):/local -w /local ${DOCKER_IMAGE}"
 
-CMD="agda --compile hello-world.agda >/dev/null 2>&1 && ./hello-world"
+CMD="agda --compile hello-world.agda >/dev/null 2>&1 && ./hello-world && rm -rf MAlonzo/"
 RESULT="$(${DOCKER_RUN} sh -c "${CMD}")"
 echo "${RESULT}"
-rm -rf hello-world.agdai MAlanzo
+rm -rf hello-world.agdai hello-world
 if [ "${RESULT}" = "Hello, world!" ]
 then
     echo "PASSED"
